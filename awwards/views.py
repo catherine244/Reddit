@@ -1,9 +1,19 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
-from django.shortcuts import render
+from django.conf import settings
+from django.templatetags.static import static
+from django.shortcuts import render, redirect, render_to_response, HttpResponseRedirect
+from django.http import HttpResponse, Http404
+import datetime as dt
+from .models import *
+from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.decorators import login_required
+from .forms import *
+from django.contrib import messages
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializer import ProfileSerializer, ProjectSerializer
 
 # Create your views here.
+
 def index(request):
     date = dt.date.today()
     projects = Projects.get_projects()
@@ -24,8 +34,8 @@ def register(request):
     else:
         form = RegisterForm()
     return render(request, 'registration/registration_form.html', {'form':form})
-
-
+    
+    
 @login_required(login_url='/accounts/login/')
 def search_projects(request):
     if 'keyword' in request.GET and request.GET["keyword"]:
@@ -38,10 +48,10 @@ def search_projects(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'search.html', {"message": message})
-    
-    
+
+
 def get_project(request, id):
-    
+
     try:
         project = Projects.objects.get(pk = id)
         
@@ -49,7 +59,8 @@ def get_project(request, id):
         raise Http404()
     
     
-    return render(request, "projects.html", {"project":project}) 
+    return render(request, "projects.html", {"project":project})
+  
 
 @login_required(login_url='/accounts/login/')
 def new_project(request):
@@ -64,7 +75,7 @@ def new_project(request):
 
     else:
         form = NewProjectForm()
-    return render(request, 'new-project.html', {"form": form})  
+    return render(request, 'new-project.html', {"form": form})
 
 
 @login_required(login_url='/accounts/login/')
@@ -83,4 +94,20 @@ def user_profiles(request):
     else:
         form = ProfileUpdateForm()
     
-    return render(request, 'registration/profile.html', {"form":form, "projects":projects}) 
+    return render(request, 'registration/profile.html', {"form":form, "projects":projects})
+
+
+class ProjectList(APIView):
+    def get(self, request, format=None):
+        all_project = Projects.objects.all()
+        serializers = ProjectSerializer(all_project, many=True)
+        return Response(serializers.data)
+    
+    
+class ProfileList(APIView):
+    def get(self, request, format=None):
+        all_profile = Profile.objects.all()
+        serializers = ProfileSerializer(all_profile, many=True)
+        return Response(serializers.data)
+    
+    

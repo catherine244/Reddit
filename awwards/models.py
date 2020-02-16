@@ -5,8 +5,6 @@ from tinymce.models import HTMLField
 from PIL import Image
 from django_countries.fields import CountryField
 from star_ratings.models import Rating
-from django.http import Http404
-from django.db.models import ObjectDoesNotExist
 
 # Create your models here.
 
