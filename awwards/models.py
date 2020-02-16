@@ -56,4 +56,22 @@ class Projects(models.Model):
     def get_by_author(cls, Author):
         projects = cls.objects.filter(Author=Author)
         return projects   
+    
+    @classmethod
+    def get_project(request, id):
+        try:
+            project = Projects.objects.get(pk = id)
+            
+        except ObjectDoesNotExist:
+            raise Http404()
+        
+        return project
+    
+    def __str__(self):
+        return self.project_title
+    
+    class Meta:
+        ordering = ['-pub_date']
+        verbose_name = 'My Project'
+        verbose_name_plural = 'Projects'
                 
