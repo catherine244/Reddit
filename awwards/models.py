@@ -14,3 +14,13 @@ class Profile(models.Model):
             output_size = (300, 300)
             img.thumbnail(output_size)
             img.save(self.photo.path)
+            
+    def delete_profile(self):
+        self.delete()
+    
+    def __str__(self):
+        return self.bio
+    
+    class Meta:
+        verbose_name = 'Profile'
+        verbose_name_plural = 'Profile        
