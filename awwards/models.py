@@ -1,6 +1,15 @@
-
+from django.db import models
+import datetime as dt
+from django.contrib.auth.models import User
+from tinymce.models import HTMLField
+from PIL import Image
+from django_countries.fields import CountryField
+from star_ratings.models import Rating
+from django.http import Http404
+from django.db.models import ObjectDoesNotExist
 
 # Create your models here.
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(blank=True)
@@ -15,6 +24,7 @@ class Profile(models.Model):
             img.thumbnail(output_size)
             img.save(self.photo.path)
             
+
     def delete_profile(self):
         self.delete()
     
@@ -24,6 +34,7 @@ class Profile(models.Model):
     class Meta:
         verbose_name = 'Profile'
         verbose_name_plural = 'Profiles'
+        
         
 class Projects(models.Model):
     project_title = models.CharField(max_length=255)
@@ -40,22 +51,24 @@ class Projects(models.Model):
         self.save()
     
     def delete_project(self):
-        self.delete()   
+        self.delete()
         
     @classmethod
     def get_projects(cls):
         projects = cls.objects.all()
-        return projects 
+        return projects
     
     @classmethod
     def search_projects(cls, search_term):
         projects = cls.objects.filter(project_title__icontains=search_term)
-        return projects     
+        return projects
+    
     
     @classmethod
     def get_by_author(cls, Author):
         projects = cls.objects.filter(Author=Author)
-        return projects   
+        return projects
+    
     
     @classmethod
     def get_project(request, id):
@@ -74,4 +87,3 @@ class Projects(models.Model):
         ordering = ['-pub_date']
         verbose_name = 'My Project'
         verbose_name_plural = 'Projects'
-                
