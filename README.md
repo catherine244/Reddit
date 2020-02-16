@@ -90,3 +90,6 @@ This application comes with two API Endpoints for Profiles and Projects.
 ## Known Bugs  
 * There are no known bugs currently but pull requests are allowed incase you spot a bug  
   
+
+  ## Contact Information   
+If you have any question or contributions, please email me at [ccayreen24@gmail.com]  
