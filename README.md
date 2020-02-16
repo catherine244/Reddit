@@ -77,3 +77,10 @@
 * Django
 * Postgresql
 * MDBootstrap
+
+## APIs 
+This application comes with two API Endpoints for Profiles and Projects.
+
+- Profiles API Endpoint - https://cateawward.herokuapp.com/api/profiles/ 
+
+- Projects API Endpoint - https://cateawward.herokuapp.com/api/projects/
