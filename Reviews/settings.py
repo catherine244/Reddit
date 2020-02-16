@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'Reviews.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'awa',
+        'NAME': 'awwards',
         'USER': 'cate',
         'PASSWORD':'cate4321',
     }
