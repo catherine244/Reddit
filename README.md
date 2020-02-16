@@ -84,3 +84,9 @@ This application comes with two API Endpoints for Profiles and Projects.
 - Profiles API Endpoint - https://cateawward.herokuapp.com/api/profiles/ 
 
 - Projects API Endpoint - https://cateawward.herokuapp.com/api/projects/
+
+
+
+## Known Bugs  
+* There are no known bugs currently but pull requests are allowed incase you spot a bug  
+  
