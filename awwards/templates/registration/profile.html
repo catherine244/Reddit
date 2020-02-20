@@ -10,9 +10,9 @@
     <div class="col-lg-8 mt-4 pt-2 ">
             <div class="pb-2">
                 {% if user.profile.photo %}
-            <img src="{{ user.profile.photo.url }}" alt="" class="d-flex justify-content-start rounded-circle mb-1 img-fluid mr-1" style="width: 150px;">
+            <img src="{{ user.profile.photo.url }}" alt="" class="d-flex justify-content-t rounded-circle mb-1 img-fluid mr-1" style="width: 150px;">
             {% else %}
-            <img src="https://source.unsplash.com/1600x900/?user,profile" alt="" class="d-flex justify-content-start rounded-circle mb-1 img-fluid mr-1" style="width: 150px;">
+            <img src="https://source.unsplash.com/1600x900/?user,profile" alt="" class="d-flex justify-content-t rounded-circle mb-1 img-fluid mr-1" style="width: 150px;">
               {% endif %}
                 <h4> <span class="font-weight-bold"> Username:</span>  {{user.username}} </h4>
         <p> <span class="font-weight-bold"> Email:</span>  {{user.email}} </p>
@@ -38,7 +38,7 @@
   </div>
 </div>
 
-<!-- Modal starts here -->
+<!-- Modal ts here -->
 <div class="modal fade" id="profile" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
